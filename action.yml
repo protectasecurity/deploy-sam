@@ -38,5 +38,5 @@ runs:
 
     - name: Deploy AWS SAM
       run: |
-        sam deploy -t dist/template.yaml --no-fail-on-empty-changeset  ${{ inputs.params }}
+        sam deploy --template-file dist/template.yaml --config-file dist/samconfig.toml --no-fail-on-empty-changeset  ${{ inputs.params }}
       shell: bash
