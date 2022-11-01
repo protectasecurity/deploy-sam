@@ -22,6 +22,7 @@ jobs:
 
 - `params` **Optional** AWS SAM deploy params
 - `artifact` **Optional** Artifact name to deploy
+- `workspace` **Optional** Relative path under $GITHUB_WORKSPACE to place the project
 
 ## Environment
 
