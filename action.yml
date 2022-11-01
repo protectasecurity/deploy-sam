@@ -1,0 +1,14 @@
+name: 'Deploy SAM GitHub Actions'
+branding:
+  icon: 'terminal'
+  color: 'orange'
+inputs:
+  params:
+    description: 'AWS SAM deploy params'
+    required: false
+  workspace:
+    description: 'Relative path under $GITHUB_WORKSPACE to place the project'
+    required: false
+runs:
+  using: 'docker'
+  image: './Dockerfile'
