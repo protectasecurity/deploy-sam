@@ -18,12 +18,6 @@ jobs:
           AWS_DEFAULT_REGION: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```
 
-## Inputs
-
-- `params` **Optional** AWS SAM deploy params
-- `artifact` **Optional** Artifact name to deploy
-- `workspace` **Optional** Relative path under $GITHUB_WORKSPACE to place the project
-
 ## Environment
 
 - `AWS_ACCESS_KEY_ID` **Required**

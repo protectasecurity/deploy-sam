@@ -2,18 +2,6 @@ name: 'Deploy SAM GitHub Actions'
 branding:
   icon: 'terminal'
   color: 'orange'
-inputs:
-  params:
-    description: 'AWS SAM deploy params'
-    required: false
-  artifact:
-    description: 'Artifact name to deploy'
-    required: false
-    default: dist
-  workspace:
-    description: 'Relative path under $GITHUB_WORKSPACE to place the project'
-    required: false
-    default: .
 runs:
   using: 'composite'
   steps:
@@ -37,18 +25,15 @@ runs:
     - name: Download Artifact
       uses: actions/download-artifact@v3
       with:
-        name: ${{ inputs.artifact }}
-        path: ${{ inputs.workspace }}
+        name: dist
+        path: .
 
     - name: Uncompress Artifact
       run: |
-        cd ${{ inputs.workspace }}
         tar -xzvf dist.tar.gz
       shell: bash
 
     - name: Deploy AWS SAM
       run: |
-        cd ${{ inputs.workspace }}
-        ls -laR dist
-        sam deploy --template-file dist/template.yaml --config-file dist/samconfig.toml --config-env ${{ github.ref_name }} --no-fail-on-empty-changeset  
+        sam deploy --template-file dist/template.yaml --config-env ${{ github.ref_name }} --no-fail-on-empty-changeset  
       shell: bash
