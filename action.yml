@@ -43,6 +43,7 @@ runs:
     - name: Uncompress Artifact
       run: |
         cd ${{ inputs.workspace }}
+        mkdir -p dist
         tar -xzvf dist.tar.gz -C dist
       shell: bash
 
