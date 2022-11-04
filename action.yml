@@ -43,13 +43,11 @@ runs:
     - name: Uncompress Artifact
       run: |
         cd ${{ inputs.workspace }}
-        mkdir -p dist
-        tar -xzvf dist.tar.gz -C dist
+        tar -xzvf dist.tar.gz
       shell: bash
 
     - name: Deploy AWS SAM
       run: |
         cd ${{ inputs.workspace }}
-        ls -laR
         sam deploy --template-file dist/template.yaml --config-file dist/samconfig.toml --config-env ${{ github.ref_name }} --no-fail-on-empty-changeset  
       shell: bash
