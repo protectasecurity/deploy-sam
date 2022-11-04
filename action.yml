@@ -9,7 +9,7 @@ inputs:
   artifact:
     description: 'Artifact name to deploy'
     required: false
-    default: dist
+    default: dist.tar.gz
   workspace:
     description: 'Relative path under $GITHUB_WORKSPACE to place the project'
     required: false
@@ -38,7 +38,13 @@ runs:
       uses: actions/download-artifact@v3
       with:
         name: ${{ inputs.artifact }}
-        path: ${{ inputs.workspace }}/dist
+        path: ${{ inputs.workspace }}/dist.tar.gz
+
+    - name: Uncompress Artifact
+      run: |
+        cd ${{ inputs.workspace }}
+        tar -xzvf dist.tar.gz -C dist
+      shell: bash
 
     - name: Deploy AWS SAM
       run: |
