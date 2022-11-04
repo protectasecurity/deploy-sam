@@ -38,13 +38,12 @@ runs:
       uses: actions/download-artifact@v3
       with:
         name: ${{ inputs.artifact }}
-        path: ${{ inputs.workspace }}/dist
+        path: ${{ inputs.workspace }}
 
     - name: Uncompress Artifact
       run: |
         cd ${{ inputs.workspace }}
-        tar -xzvf dist/dist.tar.gz -C dist
-        rm dist/dist.tar.gz 
+        tar -xzvf dist.tar.gz -C dist
       shell: bash
 
     - name: Deploy AWS SAM
