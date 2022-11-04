@@ -9,7 +9,7 @@ inputs:
   artifact:
     description: 'Artifact name to deploy'
     required: false
-    default: dist.tar.gz
+    default: dist
   workspace:
     description: 'Relative path under $GITHUB_WORKSPACE to place the project'
     required: false
